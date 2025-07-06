@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-lg rounded-4 border-0 overflow-hidden">
+        <div class="card-header bg-white text-center fs-5 fw-semibold rounded-top-4 border-0">
+          Личный кабинет
+        </div>
+        <div class="card-body bg-light rounded-bottom-4">
+          <p class="text-center mb-4">
+            Вы вошли как <strong>{{ user.username }}</strong>
+          </p>
+
+          {% if responses %}
+            <div class="accordion" id="responsesAccordion">
+              {% for r in responses %}
+                <div class="accordion-item rounded-4 overflow-hidden border-0 shadow-sm mb-3">
+                  <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                    <button
+                      class="accordion-button collapsed fw-semibold"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse{{ forloop.counter }}"
+                      aria-expanded="false"
+                      aria-controls="collapse{{ forloop.counter }}"
+                    >
+                      <span class="response-time" data-time="{{ r.created_at|date:'c' }}">
+                        Ответ от {{ r.created_at|date:"d.m.Y H:i" }}
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#responsesAccordion">
+                    <div class="accordion-body bg-white">
+                      {{ r.llm_result|safe }}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info text-center mt-4 rounded-3" role="alert">
+              Вы ещё не проходили анкету.
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

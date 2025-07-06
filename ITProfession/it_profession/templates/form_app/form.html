@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  Узнай, какое IT-направление тебе подходит!
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-white text-center fs-5 fw-semibold rounded-top-4 border-0">
+          Узнай, какое IT-направление тебе подходит!
+        </div>
+        <div class="card-body bg-light rounded-bottom-4">
+          <form method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="mb-4">
+                {% bootstrap_field field field_class="form-control rounded-3 py-2 px-3" %}
+              </div>
+            {% endfor %}
+            <div class="text-center mt-4 mb-2">
+              {% bootstrap_button button_type="submit" content="Отправить" button_class="btn btn-primary px-4 py-2 rounded-3 shadow-sm" %}
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <p class="text-center text-muted fst-italic mt-4 mb-0">
+        После отправки подождите немного — нейросеть подбирает подходящее направление...
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

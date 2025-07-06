@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Твоя траектория в IT. Открой свои таланты
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Твоя траектория в IT</h1>
+        <p class="lead text-muted">Открой свои таланты и найди своё направление</p>
+      </div>
+
+      <div class="card shadow-lg rounded-4 border-0 overflow-hidden">
+        <div class="card-body bg-light p-4 rounded-4">
+          <h5 class="text-center fw-semibold mb-4">Привет, Котик!</h5>
+          <p>
+            Мы хотим помочь тебе осознанно выбрать своё направление в IT, 
+            исходя из личных качеств, интересов и способностей. Мы поможем сделать первый шаг к освоению подходящих навыков.
+          </p>
+          <p>
+            Ты не обязан сразу знать, хочешь ли ты быть разработчиком, 
+            аналитиком данных, дизайнером или кем-то ещё. Этот путь начинается 
+            с понимания себя — своих сильных сторон, мотивации и тех задач, 
+            которые приносят тебе удовольствие.
+          </p>
+          <p>
+            Мы создали анкету, которая подскажет, в каком направлении тебе 
+            стоит развиваться. Это не финальный приговор, а стартовая 
+            точка для поиска, проб и вдохновения.
+          </p>
+          <p class="mb-4">
+            Пройди её — и открой свою персональную траекторию в мире IT.
+          </p>
+          <div class="text-center">
+            <a href="{% url 'form_app:form' %}" class="btn btn-primary px-4 py-2 rounded-3 shadow-sm">
+              Пройти анкету
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

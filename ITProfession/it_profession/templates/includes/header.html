@@ -1,0 +1,62 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'homepage:index' %}">
+        <img src="{% static 'img/logo.jpg' %}" height="40" class="rounded me-2" alt="">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        {% with request.resolver_match.view_name as view_name %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}" href="{% url 'homepage:index' %}">
+              Главная
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'community:about' %}active{% endif %}" href="{% url 'community:about' %}">
+              О нас
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'community:faq' %}active{% endif %}" href="{% url 'community:faq' %}">
+              FAQ
+            </a>
+          </li>
+        </ul>
+        {% endwith %}
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'cabinet' %}active{% endif %}" href="{% url 'cabinet' %}">
+                {{ user.username }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <form method="post" action="{% url 'logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="nav-link btn btn-link p-0 ms-2 mt-2 text-decoration-none text-danger" style="font-weight: 500;">
+                  Выйти
+                </button>
+              </form>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Вход</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'register' %}active{% endif %}" href="{% url 'register' %}">Регистрация</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables file
+.env
+
+# SQLite database
+*.sqlite3
+db.sqlite3
+
+# Django migrations
+*/migrations/*.pyc
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Logs
+*.log
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
