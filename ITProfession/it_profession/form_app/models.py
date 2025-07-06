@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class SurveyResponse(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="forms")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="forms", null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField("Имя", max_length=50)

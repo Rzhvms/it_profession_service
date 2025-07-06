@@ -4,13 +4,15 @@ from .utils import generate_it_recommendation, format_recommendation
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 def survey_view(request):
     if request.method == 'POST':
         form = SurveyForm(request.POST)
         if form.is_valid():
             response = form.save(commit=False)
-            response.user = request.user
+            if request.user.is_authenticated:
+                response.user = request.user
+            else:
+                response.user = None
             response.save()
 
             raw_recommendation = generate_it_recommendation(response)
